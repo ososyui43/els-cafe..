@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELS Coffee & Restaurant - حجز مباريات المقاهي</title>
+    <!-- أيقونة الشعار في تبويب المتصفح -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-gold: #f59e0b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --btn-color: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(180deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,1) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Matches Section */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            color: var(--accent-gold);
+            position: relative;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .price-badge {
+            background-color: var(--accent-gold);
+            color: #000;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-book {
+            background-color: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-book:hover {
+            background-color: var(--accent-gold);
+            color: #000;
+        }
+
+        /* Form Section */
+        .booking-section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--btn-color);
+            color: #000;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #d97706;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">ELS <span>Coffee & Restaurant</span></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>عيش حماس الكورة في ELS</h1>
+        <p>استمتع بأفضل أجواء مشاهدة المباريات على شاشات عرض عملاقة مع أفضل المشروبات والأكلات.</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2 class="section-title">البطولات والمباريات المعروضة</h2>
+
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">دوري أبطال أوروبا</span>
+                        <span class="price-badge">400 ج.م</span>
+                    </div>
+                    <p class="card-desc">مشاهدة أقوى مباريات السهرة الأوروبية وأجواء الليالي الكروية الكبرى.</p>
+                </div>
+                <button class="btn-book" onclick="selectTournament('دوري أبطال أوروبا (400 ج.م)')">حجز مقعد</button>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">الدوري الإنجليزي الممتاز</span>
+                        <span class="price-badge">400 ج.م</span>
+                    </div>
+                    <p class="card-desc">تغطية خاصة لمباريات الـ Premier League وإثارة الدوري الأقوى عالمياً.</p>
+                </div>
+                <button class="btn-book" onclick="selectTournament('الدوري الإنجليزي الممتاز (400 ج.م)')">حجز مقعد</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">الدوري الإسباني (LaLiga)</span>
+                        <span class="price-badge">400 ج.م</span>
+                    </div>
+                    <p class="card-desc">متابعة مواجهات الكلاسيكو وأقوى مباريات الدوري الإسباني.</p>
+                </div>
+                <button class="btn-book" onclick="selectTournament('الدوري الإسباني (400 ج.م)')">حجز مقعد</button>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">دوري أبطال إفريقيا</span>
+                        <span class="price-badge">350 ج.م</span>
+                    </div>
+                    <p class="card-desc">متابعة الأندية الإفريقية وأجواء الحماس القاري.</p>
+                </div>
+                <button class="btn-book" onclick="selectTournament('دوري أبطال إفريقيا (350 ج.م)')">حجز مقعد</button>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">مباريات بايرن ميونخ</span>
+                        <span class="price-badge">300 ج.م</span>
+                    </div>
+                    <p class="card-desc">عرض خاص ومستقل لجميع مواجهات العملاق البافاري.</p>
+                </div>
+                <button class="btn-book" onclick="selectTournament('مباريات بايرن ميونخ (300 ج.م)')">حجز مقعد</button>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">بطولات ومباريات أخرى</span>
+                        <span class="price-badge">300 ج.م</span>
+                    </div>
+                    <p class="card-desc">يشمل المباريات الودية، الكؤوس المحلية، والبطولات المتنوعة الأخرى.</p>
+                </div>
+                <button class="btn-book" onclick="selectTournament('بطولات ومباريات أخرى (300 ج.م)')">حجز مقعد</button>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="booking-section" id="booking">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">نموذج حجز مقعد</h2>
+            
+            <!-- ⚠️ غيّر رابط action بالرابط الخاص بك من Formspree -->
+            <form action="https://formspree.io/f/xojgpqga" method="POST">
+                <div class="form-group">
+                    <label>الاسم بالكامل</label>
+                    <input type="text" name="اسم العميل" required placeholder="أدخل اسمك">
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" name="رقم الهاتف" required placeholder="01xxxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label>البطولة / المباراة</label>
+                    <select id="tournamentSelect" name="البطولة">
+                        <option value="دوري أبطال أوروبا (400 ج.م)">دوري أبطال أوروبا (400 ج.م)</option>
+                        <option value="الدوري الإنجليزي الممتاز (400 ج.م)">الدوري الإنجليزي الممتاز (400 ج.م)</option>
+                        <option value="الدوري الإسباني (400 ج.م)">الدوري الإسباني (400 ج.م)</option>
+                        <option value="دوري أبطال إفريقيا (350 ج.م)">دوري أبطال إفريقيا (350 ج.م)</option>
+                        <option value="مباريات بايرن ميونخ (300 ج.م)">مباريات بايرن ميونخ (300 ج.م)</option>
+                        <option value="بطولات ومباريات أخرى (300 ج.م)">بطولات ومباريات أخرى (300 ج.م)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>عدد الأفراد</label>
+                    <input type="number" name="عدد الأفراد" min="1" max="10" value="1" required>
+                </div>
+                <button type="submit" class="btn-submit">✉️ تأكيد الحجز وترسيله للإيميل</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - ELS Coffee & Restaurant</p>
+    </footer>
+
+    <script>
+        function selectTournament(name) {
+            const select = document.getElementById('tournamentSelect');
+            select.value = name;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
